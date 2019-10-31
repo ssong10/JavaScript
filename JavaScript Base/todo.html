@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div style='width:100%;text-align:center;display:inline-block;color:white;'>
+    <h1>Todo List</h1>
+    <h1 id="time"></h1>
+    <form action="" id ="form">
+      <label for="input">할 일을 입력하세요</label>
+      <input type="text" id="input">
+      <button id="input-button" type="submit">+</button>
+    </form>
+    <ul id="todo-list">
+      <li> + 버튼이 눌리면 리스트에 추가되도록 구현하세요</li>
+    </ul>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    let time = document.querySelector('#time')
+    function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+      function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        // add a zero in front of numbers<10
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('time').innerHTML = h + "시 " + m + "분 " + s + "초";
+        t = setTimeout(function() {
+          startTime()
+        }, 500);
+      }
+      startTime();
+    let button = document.querySelector('#input-button')
+    let form = document.querySelector('#form')
+    let ul = document.querySelector('#todo-list')
+    form.addEventListener('submit',function(event) {
+      event.preventDefault()
+      if (input.value) {
+        let li = document.createElement('li')
+        li.innerText = input.value
+        input.value = ''
+        ul.appendChild(li)
+        btn = document.createElement('button')
+        btn.innerText = 'x'
+        btn.addEventListener('click',function(event){
+          li.remove()
+        })
+        li.appendChild(btn)
+      }
+      else {
+        alert('내용을 입력하세요!')
+      }
+    })
+    axios.get('https://source.unsplash.com/1600x900/?nature')
+      .then( response => {
+        document.body.style.backgroundImage = `url(${response.request.responseURL})`
+        document.body.style.backgroundSize = 'cover'
+      })
+  </script>
+</body>
+</html>
