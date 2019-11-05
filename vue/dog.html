@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id='app'>
+    <p>{{imageUrls.length}} 마리</p>
+    <button v-on:click="getDog()">개</button>
+    <img v-for="imageUrl in imageUrls" v-bind:src="imageUrl" height="200px" width="200px" alt="">
+  </div>
+  
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data : {
+        imageUrls : []
+      },
+      methods: {
+        getDog : function(){
+          axios.get('https://dog.ceo/api/breeds/image/random')
+            .then(response => {
+              this.imageUrls.push(response.data.message)
+              })
+        }
+      }
+    })
+  </script>
+</body>
+</html>
