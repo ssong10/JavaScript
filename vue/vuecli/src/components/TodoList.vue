@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-
-<body>
-  <div id='app'>
-    <h1>승열's Todo</h1>
-    <todo-list category="취업준비"></todo-list>
-    <todo-list category="싸피"></todo-list>
-    <todo-list category="개인"></todo-list>
-  </div>
-  <script>
-    // 전역 컴포넌트 선언
-    Vue.component('todo-list', {
-      template: `<div class="todo-list">
+<template>
+    <div class="todo-list">
       <h2>{{ category }}</h2>
       <input v-model="newTodo">
       <button @click="addTodo">추가</button>
@@ -27,7 +7,11 @@
         {{todo.content}}
         <button @click="removeTodo(todo.id)">x</button>
       </li>
-    </div>`,
+    </div>
+</template>
+
+<script>
+export default {
       props: {
         category: String,
         required: true
@@ -52,15 +36,11 @@
           })
         }
       }
-    })
-  </script>
+}
+</script>
 
-  <script>
-    // 루트 오브젝트
-    const app = new Vue({
-      el: "#app",
-    })
-  </script>
-</body>
-
-</html>
+<style lang="">
+/* li {
+    color:blue;
+} */
+</style>
