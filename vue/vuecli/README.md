@@ -1,9 +1,14 @@
+# Vue
+
+## Vue 기본 설치
+
 * npm
+  
     ```bash
     $npm init
     ```
-    * 비어있는 `pachage.json` 생성
-
+* 비어있는 `pachage.json` 생성
+  
 * vue, webpack 설치
     ```bash
     $ npm install vue
@@ -41,3 +46,48 @@ $ npm install vue-style-loader css-loader -D
 enter
 
 * default(babel, eslint)
+
+## $emit : 자식컴포넌트에서 상위 컴포넌트로 이벤트발생
+
+### App - SearchBar
+
+* input 태그에 등록된 이벤트인 (@input)
+* trigger : input값이 변경되면,
+* 인자로 `event`
+* `onInput` method 실행
+
+---
+
+* search-bar 컴포넌트에 등록된 이벤트(@input-change-event)
+
+* trigger : `$emit` 메소드 실행되면, (자식컴포넌트)
+* 인자로 `event.target.value`
+* `onInputChange` method 실행
+
+
+
+## Vue 설치시 사용가능한 npm
+
+#### Project setup
+
+```
+npm install
+```
+
+#### Compiles and hot-reloads for development
+
+```
+npm run serve
+```
+
+#### Compiles and minifies for production
+
+```
+npm run build
+```
+
+#### Lints and fixes files
+
+```
+npm run lint
+```
